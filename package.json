@@ -1,0 +1,27 @@
+{
+  "name": "chatbot",
+  "version": "0.0.1",
+  "description": "my first chatbot",
+  "main": "index.js",
+  "scripts": {
+    "test": "gogo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "chatbot1"
+  },
+  "keywords": [
+    "facebook",
+    "chat",
+    "bot",
+    "use",
+    "heroku"
+  ],
+  "author": "Ayush",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "request": "^2.83.0"
+  }
+}
