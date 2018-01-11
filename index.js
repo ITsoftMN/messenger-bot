@@ -45,7 +45,7 @@ app.post('/webhook/', function (req, res) {
             sendGenericMessage(sender)
             continue
         }
-        sendTextMessage(sender, "Message received: " + text.substring(0, 200))
+        sendTextMessage(sender, "Ухаалаг оператор: " + "Сайн байнуу. Та ямар мэдээлэл авах вэ?")
       }
       if (event.postback) {
         let text = JSON.stringify(event.postback)
