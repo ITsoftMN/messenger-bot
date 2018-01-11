@@ -1,4 +1,5 @@
 //chat bot first code
+'use strict'
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -24,6 +25,10 @@ app.get('/webhook/',function(req,res){
 	res.send('No entry');
 });
 
+app.listen(app.get('port'), function(){
+	console.log('running on port', app.get('port'));
+});
+
 //facebook chat post event
 
 app.post('/webhook/', function (req, res) {
@@ -33,7 +38,7 @@ app.post('/webhook/', function (req, res) {
       let sender = event.sender.id
       if (event.message && event.message.text) {
         let text = event.message.text
-        if (text === 'Generic') {
+        if (text === 'generic') {
             sendGenericMessage(sender)
             continue
         }
@@ -116,7 +121,3 @@ function sendGenericMessage(sender) {
         }
     })
 }
-
-app.listen(app.get('port'), function(){
-	console.log('running on port', app.get('port'));
-});
