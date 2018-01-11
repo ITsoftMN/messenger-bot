@@ -80,12 +80,12 @@ function sendGenericMessage(sender) {
             "payload": {
                 "template_type": "generic",
                 "elements": [{
-                    "title": "First card",
+                    "title": "Parc de la Villette-ийн задгай кино театр",
                     "subtitle": "Element #1 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
+                    "image_url": "https://www.woovoo.com/uploads/blog/woovoo_1505976491486.jpg",
                     "buttons": [{
                         "type": "web_url",
-                        "url": "https://www.messenger.com",
+                        "url": "https://woovoo.com",
                         "title": "web url"
                     }, {
                         "type": "postback",
@@ -93,9 +93,9 @@ function sendGenericMessage(sender) {
                         "payload": "Payload for first element in a generic bubble",
                     }],
                 }, {
-                    "title": "Second card",
+                    "title": "Parc de la Villette-ийн задгай кино театр",
                     "subtitle": "Element #2 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
+                    "image_url": "https://www.woovoo.com/uploads/blog/woovoo_1505976491486.jpg",
                     "buttons": [{
                         "type": "postback",
                         "title": "Postback",
