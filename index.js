@@ -39,7 +39,7 @@ app.post('/webhook/', function (req, res) {
       if (event.message && event.message.text) {
         let text = event.message.text
 
-        let greet = ['hello'];
+        let greet = 'hello';
 
         if (text === greet) {
             sendGenericMessage(sender)
