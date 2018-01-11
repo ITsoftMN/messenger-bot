@@ -38,7 +38,10 @@ app.post('/webhook/', function (req, res) {
       let sender = event.sender.id
       if (event.message && event.message.text) {
         let text = event.message.text
-        if (text === 'generic') {
+
+        let greet = ["Hey", "Hello", "Good Evening", "Good Morning", "What's up", "Сайн уу","Юу байна", "Сайн уу"]
+
+        if (text === getRandomItemFromArray(greet)) {
             sendGenericMessage(sender)
             continue
         }
@@ -81,7 +84,7 @@ function sendGenericMessage(sender) {
                 "template_type": "generic",
                 "elements": [{
                     "title": "Parc de la Villette-ийн задгай кино театр",
-                    "subtitle": "Element #1 of an hscroll",
+                    "subtitle": "кино театр",
                     "image_url": "https://www.woovoo.com/uploads/blog/woovoo_1505976491486.jpg",
                     "buttons": [{
                         "type": "web_url",
@@ -94,7 +97,7 @@ function sendGenericMessage(sender) {
                     }],
                 }, {
                     "title": "Parc de la Villette-ийн задгай кино театр",
-                    "subtitle": "Element #2 of an hscroll",
+                    "subtitle": "кино театр",
                     "image_url": "https://www.woovoo.com/uploads/blog/woovoo_1505976491486.jpg",
                     "buttons": [{
                         "type": "postback",
