@@ -39,9 +39,9 @@ app.post('/webhook/', function (req, res) {
       if (event.message && event.message.text) {
         let text = event.message.text
 
-        let greet = ["Hey", "Hello", "Good Evening", "Good Morning", "What's up", "Сайн уу","Юу байна", "Сайн уу"]
+        let greet = ['hello'];
 
-        if (text === getRandomItemFromArray(greet)) {
+        if (text === greet) {
             sendGenericMessage(sender)
             continue
         }
