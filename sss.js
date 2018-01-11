@@ -1,35 +1,38 @@
-//chat bot first code
 'use strict'
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const request = require('request');
-const app = express();
+const token = process.env.FB_PAGE_ACCESS_TOKEN
+const vtoken = process.env.FB_VERIFY_ACCESS_TOKEN
 
-const token = process.env.FB_VERIFY_TOKEN;
-const access = process.env.FB_ACCESS_TOKEN;
-app.set('port', (process.env.PORT || 5000));
+const express = require('express')
+const bodyParser = require('body-parser')
+const request = require('request')
+const app = express()
 
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+app.set('port', (process.env.PORT || 5000))
 
-app.get('/',function(req,res){
+// Process application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({extended: false}))
 
-	res.send('Hello first chatbot');
-});
+// Process application/json
+app.use(bodyParser.json())
 
-app.get('/webhook/',function(req,res){
-	if( req.query['hub.verify_token'] ===  token ){
-		res.send(req.query['hub.challenge']);
-	}
-	res.send('No entry');
-});
+// Index route
+app.get('/', function (req, res) {
+    res.send('Hello world, I am a chat bot')
+})
 
-app.listen(app.get('port'), function(){
-	console.log('running on port', app.get('port'));
-});
+// for Facebook verification
+app.get('/webhook/', function (req, res) {
+    if (req.query['hub.verify_token'] === vtoken) {
+        res.send(req.query['hub.challenge'])
+    }
+    res.send('No sir')
+})
 
-//facebook chat post event
+// Spin up the server
+app.listen(app.get('port'), function() {
+    console.log('running on port', app.get('port'))
+})
 
 app.post('/webhook/', function (req, res) {
     let messaging_events = req.body.entry[0].messaging
@@ -38,7 +41,7 @@ app.post('/webhook/', function (req, res) {
       let sender = event.sender.id
       if (event.message && event.message.text) {
         let text = event.message.text
-        if (text === 'generic') {
+        if (text === 'Generic') {
             sendGenericMessage(sender)
             continue
         }
@@ -46,19 +49,19 @@ app.post('/webhook/', function (req, res) {
       }
       if (event.postback) {
         let text = JSON.stringify(event.postback)
-        sendTextMessage(sender, "Postback: "+text.substring(0, 200), access)
+        sendTextMessage(sender, "Postback: "+text.substring(0, 200), token)
         continue
       }
     }
     res.sendStatus(200)
-})
+  })
 
 
 function sendTextMessage(sender, text) {
     let messageData = { text:text }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token: access},
+        qs: {access_token:token},
         method: 'POST',
         json: {
             recipient: {id:sender},
@@ -107,7 +110,7 @@ function sendGenericMessage(sender) {
     }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token: access},
+        qs: {access_token:token},
         method: 'POST',
         json: {
             recipient: {id:sender},
