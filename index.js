@@ -1,3 +1,4 @@
+
 //chat bot first code
 'use strict'
 
@@ -32,6 +33,7 @@ app.listen(app.get('port'), function(){
 //facebook chat post event
 
 app.post('/webhook/', function (req, res) {
+
     let messaging_events = req.body.entry[0].messaging
     for (let i = 0; i < messaging_events.length; i++) {
       let event = req.body.entry[0].messaging[i]
@@ -42,10 +44,12 @@ app.post('/webhook/', function (req, res) {
         let greet = 'hello';
 
         if (text === greet) {
+            
             sendGenericMessage(sender)
+
             continue
         }
-        sendTextMessage(sender, "Ухаалаг оператор: " + "Сайн байнуу. Та ямар мэдээлэл авах вэ?")
+        sendTextMessage(sender, "Woovoo chatbot: " + "Сайн байнуу. Та ямар мэдээлэл авах вэ?")
       }
       if (event.postback) {
         let text = JSON.stringify(event.postback)
@@ -64,7 +68,9 @@ function sendTextMessage(sender, text) {
         qs: {access_token: access},
         method: 'POST',
         json: {
-            recipient: {id:sender},
+            recipient: {
+            	id:sender
+            },
             message: messageData,
         }
     }, function(error, response, body) {
@@ -76,36 +82,42 @@ function sendTextMessage(sender, text) {
     })
 }
 
+
 function sendGenericMessage(sender) {
     let messageData = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [{
-                    "title": "Parc de la Villette-ийн задгай кино театр",
-                    "subtitle": "кино театр",
-                    "image_url": "https://www.woovoo.com/uploads/blog/woovoo_1505976491486.jpg",
-                    "buttons": [{
-                        "type": "web_url",
-                        "url": "https://woovoo.com",
-                        "title": "web url"
-                    }, {
-                        "type": "postback",
-                        "title": "Postback",
-                        "payload": "Payload for first element in a generic bubble",
-                    }],
-                }, {
-                    "title": "Parc de la Villette-ийн задгай кино театр",
-                    "subtitle": "кино театр",
-                    "image_url": "https://www.woovoo.com/uploads/blog/woovoo_1505976491486.jpg",
-                    "buttons": [{
-                        "type": "postback",
-                        "title": "Postback",
-                        "payload": "Payload for second element in a generic bubble",
-                    }],
-                }]
-            }
+    	"recipient":{
+		    "id":"sender"
+		  },
+        "message" : {
+	        	"attachment": {
+	            "type": "template",
+	            "payload": {
+	                "template_type": "generic",
+	                "elements": [{
+	                    "title": "Parc de la Villette-ийн задгай кино театр",
+	                    "subtitle": "кино театр",
+	                    "image_url": "https://www.woovoo.com/uploads/blog/woovoo_1505976491486.jpg",
+	                    "buttons": [{
+	                        "type": "web_url",
+	                        "url": "https://woovoo.com",
+	                        "title": "web url"
+	                    }, {
+	                        "type": "postback",
+	                        "title": "Postback",
+	                        "payload": "Payload for first element in a generic bubble",
+	                    }],
+	                }, {
+	                    "title": "Parc de la Villette-ийн задгай кино театр",
+	                    "subtitle": "кино театр",
+	                    "image_url": "https://www.woovoo.com/uploads/blog/woovoo_1505976491486.jpg",
+	                    "buttons": [{
+	                        "type": "postback",
+	                        "title": "Postback",
+	                        "payload": "Payload for second element in a generic bubble",
+	                    }],
+	                }]
+	            }
+	        }
         }
     }
     request({
