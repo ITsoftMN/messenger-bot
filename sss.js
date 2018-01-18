@@ -280,8 +280,8 @@ function sendWelcome(recipientId) {
       var greetings = ["Hey", "Hello", "Good Evening", "Good Morning", "What's up", "Сайн уу","Юу байна", "Сайн уу"];
       var randomGreeting = getRandomItemFromArray(greetings);
       var welcomeMsg = `${randomGreeting} ${userName}, 
-I am Cryptocurrency AI bot.
-¯\\_(ツ)_/¯ .
+            I am Cryptocurrency AI bot.
+            ¯\\_(ツ)_/¯ .
       `;
       sendTextMessage(recipientId, welcomeMsg);
     }
