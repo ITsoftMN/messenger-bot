@@ -21,7 +21,10 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "config": "^1.29.2",
     "express": "^4.16.2",
+    "morgan": "^1.9.0",
+    "path": "^0.12.7",
     "request": "^2.83.0"
   }
 }
