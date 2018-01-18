@@ -44,8 +44,6 @@ if (!(APP_SECRET && VALIDATION_TOKEN && PAGE_ACCESS_TOKEN && WEBHOOK_URL)) {
   console.error("Missing config values");
   process.exit(1);
 }
-
-
 // greeting
 request({
   url: 'https://graph.facebook.com/v2.8/me/thread_settings',
@@ -170,8 +168,10 @@ function receivedMessage(event) {
       sendGenericMessage(senderID);
     else if (textMatches(messageText, "хичээл")) 
       sendReceiptMessage(senderID);
+    else if (textMatches(messageText, "сайн уу ")) 
+      sendTextMessage(senderID, "Message with attachment received");
     else if (textMatches(messageText, "тусламж")) 
-      sendHelp(senderID);
+      sendHelp(senderID,);
     else
       sendWelcome(senderID);
   } else if (messageAttachments) {
